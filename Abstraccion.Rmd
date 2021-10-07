@@ -1,0 +1,80 @@
+---
+params:
+  HT_1: 
+  N_OFICIO_2:
+  LUGAR_3:
+  DESTINATARIO_4:
+  EFA_5: 
+  DPTO_EFA_6:
+  PROV_EFA_7:
+  DIR_EFA_8:
+  OCI_9: 
+  DPTO_OCI_10:
+  PROV_OCI_11:
+  DIR_OCI_12:
+  FIRMANTE_13:
+  ADICIONAL_14:
+  ADICIONAL_15:
+  ADICIONAL_16:
+output: 
+  word_document:
+    reference_docx: "plantilla.docx"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+# I. Librerías y parámetros ----
+
+# I.1 Librerías ----
+#install.packages("lubridate")
+library(lubridate)
+#install.packages("stringr")
+library(stringr)
+
+# Mes
+Mes_actual <- str_to_lower(month(now(), 
+                                 label=TRUE, abbr = FALSE))
+
+# I.2 Parámetros ----
+HT <- params$HT_1 
+NUM_OFICIO <- params$N_OFICIO_2
+LUGAR <- params$LUGAR_3
+DESTINATARIO <- params$DESTINATARIO_4
+EFA <- params$EFA_5 
+DPTO_EFA <- params$DPTO_EFA_6
+PROV_EFA <- params$PROV_EFA_7
+DIR_EFA <- params$DIR_EFA_8
+OCI <- params$OCI_9 
+DPTO_OCI <- params$DPTO_OCI_10
+PROV_OCI <- params$PROV_OCI_11
+DIR_OCI <- params$DIR_OCI_12
+FIRMA <- params$FIRMANTE_13
+AUX_1 <- params$ADICIONAL_14
+AUX_2 <- params$ADICIONAL_15
+
+
+```
+
+###### `r HT[[1]]`
+
+`r LUGAR[[1]]`, `r day(now())` de `r Mes_actual[[1]]` de `r year(now())`
+
+# \${numeroDocumento}
+
+### Sr/a
+
+### *`r DESTINATARIO[[1]]`*
+
+### `r EFA[[1]]`
+
+#### `r PROV_EFA[[1]]`, `r DPTO_EFA[[1]]`.-
+
++------------+---+----------------------------------------------------------------------------+
+| Asunto     | : | Reitero solicitud de información sobre acciones de fiscalización ambiental |
++------------+---+----------------------------------------------------------------------------+
+| Referencia | : | Oficio XX                                                                  |
++------------+---+----------------------------------------------------------------------------+
+
+De mi mayor consideración:
+
+Tengo el agrado de dirigirme a usted para saludarlo cordialmente y, a su vez, reiterar el requerimiento de información realizado a través de los documentos de la referencia, concerniente al estado en que se encuentran los procedimientos administrativos sancionados iniciados a cinco (05) embarcaciones producto de las acciones de patrullaje realizadas el año 2018 en la bahía de Pucusana, así como sobre las acciones de patrullaje efectuadas en la bahía de Pucusana durante el 2020; información que deberá ser remitida al Organismo de Evaluación y Fiscalización Ambiental (OEFA) [**en un plazo de cinco (5) días hábiles**.]{.ul}
