@@ -24,6 +24,7 @@ library(purrr)
 library(lubridate)
 library(googledrive)
 library(googlesheets4)
+library(stringi)
 
 # I.2 Parametros ----
 # i) Conexion de la base y descarga de matriz de insumos
@@ -39,6 +40,15 @@ auto_lec_rep <- function(ht, num, lugar, nombre,
 
   # Se eliminan carácteres especiales
   efa_n = gsub("Ñ", "N", efa)
+  
+  # Eliminación de tildes
+  con_tilde_may <- c("Á", "É", "Í", "Ó", "Ú")
+  sin_tilde_may <- c("A", "E", "I", "O", "U")
+  con_tilde_min <- c("á", "é", "í", "ó", "ú")
+  sin_tilde_min <- c("a", "e", "i", "o", "u")
+  
+  efa_f = stri_replace_all_regex(efa_n, con_tilde_may, sin_tilde_may, vectorize = F)
+  efa_f = stri_replace_all_regex(efa_n, con_tilde_min, sin_tilde_min, vectorize = F)
   
   rmarkdown::render(input = MODELO_RMD,
                     # Heredamos los par?metros desde la matriz de insumos
@@ -60,7 +70,7 @@ auto_lec_rep <- function(ht, num, lugar, nombre,
                                   ADICIONAL_16 = aux_3),
                     output_file = paste0(NOMBRE_PEDIDO,
                                          " - ",
-                                         efa_n))
+                                         efa_f))
 }
 
 # II.2 Funcion robustecida -----
