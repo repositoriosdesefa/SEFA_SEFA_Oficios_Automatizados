@@ -48,7 +48,7 @@ auto_lec_rep <- function(ht, num, lugar, nombre,
   sin_tilde_min <- c("a", "e", "i", "o", "u")
   
   efa_f = stri_replace_all_regex(efa_n, con_tilde_may, sin_tilde_may, vectorize = F)
-  efa_f = stri_replace_all_regex(efa_n, con_tilde_min, sin_tilde_min, vectorize = F)
+  efa_f = stri_replace_all_regex(efa_f, con_tilde_min, sin_tilde_min, vectorize = F)
   
   rmarkdown::render(input = MODELO_RMD,
                     # Heredamos los par?metros desde la matriz de insumos
